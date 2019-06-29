@@ -21,6 +21,8 @@
           input.form-control(id='block#{block.block}chain#{block.chain}coinbasevalue', type='text', value='#{block.coinbasevalue}', onkeyup='updateChain(#{block.block}, #{block.chain});')
           .input-group-addon -&gt;
           input.form-control(id='block#{block.block}chain#{block.chain}coinbaseto', type='text', value='#{block.coinbaseto}', onkeyup='updateChain(#{block.block}, #{block.chain});')
+          .input-group-addon -&gt;
+          input.form-control(id='block#{block.block}chain#{block.chain}txMiner', type='text', value='#{block.coinbaseto}', onkeyup='updateChain(#{block.block}, #{block.chain});')
 
     .form-group
       label.col-sm-2.control-label #{__('Tx')}:
@@ -33,6 +35,21 @@
             input.form-control(id='block#{block.block}chain#{block.chain}tx#{x}from', type='text', value='#{tx.from}', onkeyup='updateChain(#{block.block}, #{block.chain});')
             .input-group-addon -&gt;
             input.form-control(id='block#{block.block}chain#{block.chain}tx#{x}to', type='text', value='#{tx.to}', onkeyup='updateChain(#{block.block}, #{block.chain});')
+
+
+
+    .form-group
+      label.col-sm-2.control-label #{__('Change')}:
+      .col-sm-10
+        - each tx, x in block.change
+          .input-group
+            .input-group-addon #{__('$')}
+            input.form-control(id='block#{block.block}chain#{block.chain}change#{x}value', type='number', value='#{tx.value}')
+            .input-group-addon -&gt;
+            input.form-control(id='block#{block.block}chain#{block.chain}change#{x}to', type='text')
+    
+
+    
 
     #state.form-group
       label.col-sm-2.control-label(for='block#{block.block}chain#{block.chain}previous') #{__('Prev')}:
@@ -49,4 +66,5 @@
         i.icon-spinner.icon-spin.icon-large
       .col-sm-10
         button.btn.btn-primary.ladda-button(id='block#{block.block}chain#{block.chain}mineButton', data-style='expand-right')
-          span.ladda-label #{__('Mine')}
+          span.ladda-label #{__('Minerar')} (txminer 000.5)
+        

@@ -2,18 +2,18 @@ extends layout
 
 block content
   .container-fluid
-    h1 #{__('Coinbase Transactions')}
-    -var jsonTxs = [ {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''} ]
-    - var peers = {1: 'BTC'}
+    h1 #{__('BlockChain')}
+    -var jsonTxs = [ {value: '', from: '', to: ''}]
+    - var peers = {1: 'AltCoin'}
     - each peer, chain in peers
-      h3 #{__('Peer')} #{peer}
+      h3 #{__('Crypto')} #{peer}
       .row.row-horizon
         - var blocks = []
-        - blocks.push({block: 1, chain: chain, nonce: 16651, coinbasevalue: '100.00', coinbaseto: '', txs: [], previous: '0000000000000000000000000000000000000000000000000000000000000000'})
-        - blocks.push({block: 2, chain: chain, nonce: 215458, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, previous: '000438d7625b86a6f366545b1929975a0d3ff1f8847e56cc587cadddb0ab781'})
-        - blocks.push({block: 3, chain: chain, nonce: 146, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, previous: '000baeab68c2a60f9a6fa56355438d97c672a15494fcea617064d9314f9ff63'})
-        - blocks.push({block: 4, chain: chain, nonce: 18292, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, previous: '000df1d632b734f5a5fc126a0f0e8894fb4c8314ba7086b62980559af6771b9'})
-        - blocks.push({block: 5, chain: chain, nonce: 108899, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, previous: '0000c694336f88129f3685bd3ba5d67c445dfd8d18bd22f5d87301dd560eb30e'})
+        - blocks.push({block: 1, chain: chain, nonce: 16651, coinbasevalue: '100.00', coinbaseto: '', txs: [],change:[], previous: '0000000000000000000000000000000000000000000000000000000000000000'})
+        - blocks.push({block: 2, chain: chain, nonce: 215458, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, change: jsonTxs,  previous: '000438d7625b86a6f366545b1929975a0d3ff1f8847e56cc587cadddb0ab781'})
+        - blocks.push({block: 3, chain: chain, nonce: 146, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, change: jsonTxs, previous: '000baeab68c2a60f9a6fa56355438d97c672a15494fcea617064d9314f9ff63'})
+        - blocks.push({block: 4, chain: chain, nonce: 18292, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, change: jsonTxs, previous: '000df1d632b734f5a5fc126a0f0e8894fb4c8314ba7086b62980559af6771b9'})
+        - blocks.push({block: 5, chain: chain, nonce: 108899, coinbasevalue: '100.00', coinbaseto: '', txs: jsonTxs, change: jsonTxs, previous: '0000c694336f88129f3685bd3ba5d67c445dfd8d18bd22f5d87301dd560eb30e'})
         each block in blocks
           .col-xs-7
             include includes/coinbaseblock.jade
@@ -34,22 +34,55 @@ block content
               $('#block'+block+'chain'+chain+'coinbaseto').val();
 
       for (var x=0; $('#block'+block+'chain'+chain+'tx'+x+'value').length > 0; x++) {
-        s = s + $('#block'+block+'chain'+chain+'tx'+x+'value').val() +
+        s = s + $('#block'+block+'chain'+chain+'tx'+x+'value').val() +  
                 $('#block'+block+'chain'+chain+'tx'+x+'from').val() +
                 $('#block'+block+'chain'+chain+'tx'+x+'to').val();
+      }
+
+      for (var x=0; $('#block'+block+'chain'+chain+'change'+x+'value').length > 0; x++) {
+        s = s + $('#block'+block+'chain'+chain+'change'+x+'value').val() +
+                $('#block'+block+'chain'+chain+'change'+x+'from').val() +
+                $('#block'+block+'chain'+chain+'change'+x+'to').val();
       }
       s = s + $('#block'+block+'chain'+chain+'previous').val();
       return s;
     }
 
     function setup(block, chain) {
+      
       updateHash(block, chain);
       $('#block'+block+'chain'+chain+'mineButton').click(function(e) {
+        //- if( $('#block'+block+'chain'+chain+'tx0from').val() === "" || 
+        //-            $('#block'+block+'chain'+chain+'tx0to').val() === "" )  {
+        //-              alert('transacao nao validada');
+        //-              return;
+        //-            }
           e.preventDefault();
           var l = Ladda.create(this);
           l.start();
           setTimeout(function() {
               mine(block, chain, true);
+              var nomesAleatorios = ['Carla', 'Itamar', 'Solange', 'Eduardo', 'Satoshi Nakamoto'];
+              var txMiner = 0.5 / 100
+              var vltxMiner =  0
+              var txValue = $('#block'+block+'chain'+chain+'tx0value').val();
+              var rand = nomesAleatorios[Math.floor(Math.random() * nomesAleatorios.length)];
+              $('#block'+block+'chain'+chain+'coinbaseto').val(rand);
+
+              if(txValue !== "") {
+                vltxMiner = txMiner*txValue
+              }
+              $('#block'+block+'chain'+chain+'txMiner').val(vltxMiner + ' txMiner');
+
+              $('#block'+block+'chain'+chain+'change0to').val($('#block'+block+'chain'+chain+'tx0from').val()); 
+
+              if($('#block'+block+'chain'+chain+'change0value').val() === "" )
+              {
+                if($('#block'+block+'chain'+chain+'tx0value').val() !== "" && $('#block'+block+'chain'+chain+'tx0value').val() !== "0")  {
+                alert(rand+ ', ficou com o troco');
+                }
+              }
+
               l.stop();
             }, 250); // give UI time to update
             
