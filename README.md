@@ -1,5 +1,8 @@
 # Blockchain Demo
-A web-based demonstration of blockchain concepts.
+Demostracao conceitual plataforma blockchain.
+
+
+
 
 
 
@@ -7,10 +10,12 @@ A web-based demonstration of blockchain concepts.
 Melhor no Google Chrome. xD
 
 # ALunos 
-Alexandre
-Eduardo
-Itamar
+Alexandre 
+Eduardo  
+Itamar 
 Guilherme
 
 # Veja mais 
-(https://learnathons.blogspot.com/2016/06/nodejs-express-jade-and-mongodb.html) Jade 
+Jade 
+
+Baseado no conceito criado por @anders94
