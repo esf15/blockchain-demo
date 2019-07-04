@@ -5,7 +5,7 @@ Demostracao conceitual plataforma blockchain.
 Melhor no Google Chrome. xD
 
 # ALunos 
-Alexandre  ...
+Alexandre Akel
 Eduardo Franklin  
 Itamar Ribeiro 
 Guilherme Araujo
@@ -27,6 +27,6 @@ install npm -  (npm package)
 run `npm install`
 
 
-run `nom start`
+run `npm start`
 
 Baseado no conceito criado por @anders94
