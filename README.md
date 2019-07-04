@@ -5,7 +5,8 @@ Demostracao conceitual plataforma blockchain.
 Melhor no Google Chrome. xD
 
 # Alunos 
-```Alexandre Akel 
+```
+Alexandre Akel 
 Eduardo Franklin  
 Itamar Ribeiro 
 Guilherme Araujo
