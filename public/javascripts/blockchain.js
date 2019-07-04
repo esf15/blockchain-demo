@@ -21,6 +21,15 @@ function sha256(block, chain) {
   return CryptoJS.SHA256(getText(block, chain));
 }
 
+
+function init() {
+  $("body").css
+}
+
+
+
+init();
+
 function updateState(block, chain) {
   // set the well background red or green for this block
   if ($('#block'+block+'chain'+chain+'hash').val().substr(0, difficulty) === pattern) {
