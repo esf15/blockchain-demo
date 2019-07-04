@@ -4,12 +4,12 @@ Demostracao conceitual plataforma blockchain.
 # Tips 
 Melhor no Google Chrome. xD
 
-# ALunos 
-Alexandre Akel
+# Alunos 
+```Alexandre Akel 
 Eduardo Franklin  
 Itamar Ribeiro 
 Guilherme Araujo
-
+```
 # Veja mais 
 Jade 
 
