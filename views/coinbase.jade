@@ -3,7 +3,7 @@ extends layout
 block content
   .container-fluid
     h1 #{__('BlockChain')}
-    -var jsonTxs = [ {value: '', from: '', to: ''}]
+    -var jsonTxs = [ {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''}, {value: '', from: '', to: ''}]
     - var peers = {1: 'AltCoin'}
     - each peer, chain in peers
       h3 #{__('Crypto')} #{peer}
@@ -62,8 +62,8 @@ block content
           l.start();
           setTimeout(function() {
               mine(block, chain, true);
-              var nomesAleatorios = ['Carla', 'Itamar', 'Solange', 'Eduardo', 'Satoshi Nakamoto'];
-              var txMiner = 0.5 / 100
+              var nomesAleatorios = [['Carla',], 'Itamar', 'Solange', 'Eduardo', 'Satoshi Nakamoto'];
+              var txMiner = 0.005
               var vltxMiner =  0
               var txValue = $('#block'+block+'chain'+chain+'tx0value').val();
               var rand = nomesAleatorios[Math.floor(Math.random() * nomesAleatorios.length)];
